@@ -6,9 +6,10 @@ import string
 
 class Boggle():
 
-    def __init__(self, board_size=6):
+    def __init__(self, board_size=6, board=None):
         self.board_size = board_size
         self.words = self.read_dict("words.txt")
+        self.board = self.make_board() if not board else board
 
     def read_dict(self, dict_path):
         """Read and return all words in dictionary."""

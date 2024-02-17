@@ -30,8 +30,9 @@ class FlaskTests(TestCase):
        with self.app.session_transaction() as sess:
            sess['board'] = [['T', 'E', 'S', 'T', 'S'], ['T', 'E', 'S', 'T', 'S'], ['T', 'E', 'S', 'T', 'S'], ['T', 'E', 'S', 'T', 'S'], ['T', 'E', 'S', 'T', 'S']]  
        response = self.app.post('/guess', json={'guess': 'tests'})
+       
        self.assertEqual(response.status_code, 200)
-       self.assertIn('"result": "ok"', response.data.decode('utf-8'))  
+       self.assertIn('Great!, That is a valid word.', response.data.decode('utf-8'))  
         
   def test_reshuffle(self):
        response = self.app.get('/reshuffle')
